@@ -3,10 +3,12 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const port = 3000;
 const student = require('./Student/studentController')
+const teacher=require('./Teacher/teacherController')
 const app = express()
 
 app.use(express.json())
 app.use(student)
+app.use(teacher)
 
 
 mongoose.connect("mongodb://localhost:27017/LMS",
