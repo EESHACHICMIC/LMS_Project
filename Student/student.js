@@ -3,6 +3,10 @@ const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
 const { application } = require('express')
 const stuSchema = new mongoose.Schema({
+    rollNo:{
+        type:String,
+        required:true
+    },
     first_name: {
         type: String,
         required: true

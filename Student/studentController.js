@@ -27,6 +27,7 @@ router.post('/api/student',upload.single('profilePic'), async (req, res, next) =
         try {
             // const stu = new studentList(req.body)
             const stuData = {
+                rollNo:req.body.rollNo,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 email: req.body.email,

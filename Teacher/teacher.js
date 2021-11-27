@@ -3,6 +3,10 @@ const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
 const { application } = require('express')
 const teacherSchema = new mongoose.Schema({
+    emp_id:{
+        type:String,
+        required:true
+    },
     first_name: {
         type: String,
         required: true
@@ -14,6 +18,10 @@ const teacherSchema = new mongoose.Schema({
     salary: {
         type: Number, 
         required: true
+    },
+    teachingIn:{
+        type:Array,
+        required:true
     },
     email: {
         type: String,

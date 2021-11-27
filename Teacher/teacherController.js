@@ -1,5 +1,5 @@
 
-const studentList = require('./teacher')
+const teacherList = require('./teacher')
 const express = require('express');
 const multer=require('multer')
 const router = express.Router();
@@ -23,21 +23,23 @@ router.post('/api/teacher',upload.single('profilePic'), async (req, res, next) =
     const createDocument = async () => {
 
         try {
-            // const stu = new studentList(req.body)
+            
             const teacherData = {
+                emp_id:req.body.emp_id,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
+                teachingIn:req.body.teachingIn,
                 email: req.body.email,
                 salary: req.body.salary,
                 password: await bcrypt.hash(req.body.password, 10),
                 profilePic:req.file.path
-
             }
-            console.log("SudentData:", teacherData)
 
-            const stu = new studentList(teacherData)
+            console.log("TeacherData:", teacherData)
 
-            const result = await stu.save();
+            const teacher = new teacherList(teacherData)
+
+            const result = await teacher.save();
             console.log("Result:", result)
 
             res.status(200).json({
@@ -55,6 +57,7 @@ router.post('/api/teacher',upload.single('profilePic'), async (req, res, next) =
 
 
 router.get('/api/teacher/all',(req,res)=>{
+    
     const displayDocument=async()=>{
         const data= await teacherList.find({}).lean();
         console.log(data)
