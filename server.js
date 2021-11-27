@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const port = 3000;
+const port = 5000;
 const student = require('./Student/studentController')
 const teacher=require('./Teacher/teacherController')
 const app = express()

@@ -12,7 +12,7 @@ const teacherSchema = new mongoose.Schema({
         required: true
     },
     salary: {
-        type: Number,
+        type: Number, 
         required: true
     },
     email: {
@@ -22,6 +22,10 @@ const teacherSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    profilePic:{
+        type:String,
+        required:true
     }
 })
 

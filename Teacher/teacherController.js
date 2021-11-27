@@ -1,10 +1,23 @@
 
 const studentList = require('./teacher')
 const express = require('express');
+const multer=require('multer')
 const router = express.Router();
 const bcrypt = require('bcrypt')
 
-router.post('/api/teacher', async (req, res, next) => {
+const fileStorageEngine = multer.diskStorage({
+    destination: (req, res, cb) => {
+        cb(null, './Teacher/images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({ storage: fileStorageEngine })
+
+
+router.post('/api/teacher',upload.single('profilePic'), async (req, res, next) => {
 
 
     const createDocument = async () => {
@@ -16,7 +29,8 @@ router.post('/api/teacher', async (req, res, next) => {
                 last_name: req.body.last_name,
                 email: req.body.email,
                 salary: req.body.salary,
-                password: await bcrypt.hash(req.body.password, 10)
+                password: await bcrypt.hash(req.body.password, 10),
+                profilePic:req.file.path
 
             }
             console.log("SudentData:", teacherData)
