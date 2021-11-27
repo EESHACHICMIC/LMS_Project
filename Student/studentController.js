@@ -54,4 +54,13 @@ router.post('/api/student',upload.single('profilePic'), async (req, res, next) =
 
 })
 
+router.get('/api/student/all',(req,res)=>{
+    const displayDocument=async()=>{
+        const data= await studentList.find({}).lean();
+        console.log(data)
+        res.json({data})
+    }
+    displayDocument();
+})
+
 module.exports = router;
