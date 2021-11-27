@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const { application } = require('express')
 const stuSchema = new mongoose.Schema({
     rollNo:{
-        type:String,
+        type:Number,
         required:true
     },
     first_name: {

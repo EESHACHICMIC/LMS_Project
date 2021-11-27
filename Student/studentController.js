@@ -3,7 +3,8 @@ const studentList = require('./student')
 const express = require('express');
 const multer=require('multer');
 const router = express.Router();
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcrypt');
+const teacherList = require('../Teacher/teacher');
 
 
 const fileStorageEngine = multer.diskStorage({
@@ -64,4 +65,15 @@ router.get('/api/student/all',(req,res)=>{
     displayDocument();
 })
 
+
+router.get('/api/student/:id',(req,res)=>{
+    const findStudent=async()=>{
+        console.log(req.params.id);
+       let foundStu= await studentList.find({rollNo:Number.parseInt(req.params.id)},{_id:0});
+       console.log(foundStu);
+       res.send(foundStu)
+
+    }
+    findStudent();
+})
 module.exports = router;

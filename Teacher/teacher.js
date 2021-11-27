@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const { application } = require('express')
 const teacherSchema = new mongoose.Schema({
     emp_id:{
-        type:String,
+        type:Number,
         required:true
     },
     first_name: {
