@@ -70,8 +70,19 @@ router.get('/api/student/:id',(req,res)=>{
     const findStudent=async()=>{
         console.log(req.params.id);
        let foundStu= await studentList.find({rollNo:Number.parseInt(req.params.id)},{_id:0});
+       let stuClass=await studentList.find({rollNo:Number.parseInt(req.params.id)},{_id:0,class:1})
+    //    console.log(typeOf(stuClass));
+       console.log(stuClass);
+
+       let foundTeacher= await teacherList.find({teachingIn:"9th"},{_id:0,emp_id:1,first_name:1,last_name:1,email:1,profilePic:1});
        console.log(foundStu);
-       res.send(foundStu)
+       console.log(foundTeacher);
+
+       res.status(200).json({
+           success:true,
+           STUDENT_INFO:foundStu,
+           TEACHER_DETAILS:foundTeacher
+       })
 
     }
     findStudent();

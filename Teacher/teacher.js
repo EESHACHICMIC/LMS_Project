@@ -20,7 +20,7 @@ const teacherSchema = new mongoose.Schema({
         required: true
     },
     teachingIn:{
-        type:Array,
+        type:String,
         required:true
     },
     email: {
