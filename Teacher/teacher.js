@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
-const { application } = require('express')
 const teacherSchema = new mongoose.Schema({
     emp_id:{
         type:Number,

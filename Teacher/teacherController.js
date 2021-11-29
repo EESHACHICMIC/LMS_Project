@@ -1,5 +1,6 @@
 
 const teacherList = require('./teacher')
+const studentList=require('../Student/student')
 const express = require('express');
 const multer=require('multer')
 const router = express.Router();
@@ -65,5 +66,31 @@ router.get('/api/teacher/all',(req,res)=>{
     }
     displayDocument();
 })
+
+
+
+router.get('/api/teacher/:id',(req,res)=>{
+    const findTeacher=async()=>{
+        console.log(req.params.id);
+       let foundTeacher= await teacherList.find({emp_id:Number.parseInt(req.params.id)},{_id:0});
+       let teachingInClass=await teacherList.find({emp_id:Number.parseInt(req.params.id)},{_id:0,teachingIn:1})
+       console.log(teachingInClass[0].teachingIn);
+
+       let foundStudent= await studentList.find({class:teachingInClass[0].teachingIn},{_id:0,rollNo:1,first_name:1,last_name:1,email:1,profilePic:1});
+       console.log(foundTeacher);
+       console.log(foundStudent);
+
+       res.status(200).json({
+           success:true,
+           TEACHER_INFO:foundTeacher,
+           STUDENT_DETAILS:foundStudent
+       })
+
+    }
+    findTeacher();
+})
+
+
+
 
 module.exports = router;
