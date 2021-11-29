@@ -71,17 +71,17 @@ router.get('/api/teacher/all',(req,res)=>{
 
 router.get('/api/teacher/:id',(req,res)=>{
     const findTeacher=async()=>{
+       
        let foundTeacher= await teacherList.find({emp_id:Number.parseInt(req.params.id)},{_id:0});
        let teachingInClass=await teacherList.find({emp_id:Number.parseInt(req.params.id)},{_id:0,teachingIn:1})
-       console.log(teachingInClass)
-       console.log(teachingInClass[0].teachingIn);
+      
 
        let foundStudent= await studentList.find({class:teachingInClass[0].teachingIn},{_id:0,rollNo:1,first_name:1,last_name:1,email:1,profilePic:1});
 
        res.status(200).json({
            success:true,
            TEACHER_INFO:foundTeacher,
-           STUDENT_DETAILS:foundStudent[0]==undefined? `Not any student are registred of ${teachingInClass} class`:foundStudent
+           STUDENT_DETAILS:foundStudent[0]==undefined? `Not any student are registred of ${teachingInClass[0].teachingIn} class`:foundStudent
        })
 
     }

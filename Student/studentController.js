@@ -80,7 +80,7 @@ router.get('/api/student/:id',(req,res)=>{
        res.status(200).json({
            success:true,
            STUDENT_INFO:foundStu,
-           TEACHER_DETAILS:foundTeacher[0]==undefined?`No any Teacher is alloted for ${stuClass} student`:foundTeacher
+           TEACHER_DETAILS:foundTeacher[0]==undefined?`No any Teacher is alloted for ${stuClass[0].class} student`:foundTeacher
        })
 
     }
